@@ -10,7 +10,9 @@
 <AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4">
 	<svelte:fragment slot="header">
 		<AppBar>
-			Skeleton
+			<svelte:fragment slot="lead">
+				Aidan's Photos
+			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<LightSwitch />
 			</svelte:fragment>

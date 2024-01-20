@@ -4,7 +4,7 @@ type Photo = {
     categories: string[],
 }
 
-type PhotoPlus = Photo & {
+export type PhotoPlus = Photo & {
     avif: {
         w720: string,
         w1440: string,

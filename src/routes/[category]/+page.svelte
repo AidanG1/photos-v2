@@ -1,16 +1,14 @@
 <script lang="ts">
 	import Masonry from '$lib/components/Masonry.svelte'
+	import TailwindMasonry from '$lib/components/TailwindMasonry.svelte'
+	import PhotoCard from '$lib/components/PhotoCard.svelte'
 	export let data
 </script>
 
+<!-- <TailwindMasonry photos={data.photos} /> -->
+
 <Masonry reset>
-	{#each data.photos as p}
-		<div>
-			<picture>
-				<source srcset={p.jp2.w720} type="image/jp2" />
-				<source srcset={p.avif.w720} type="image/avif" />
-				<img src={p.webp.w720} alt="Photo rank {p.rank}" />
-			</picture>
-		</div>
+	{#each data.photos as p, i}
+		<PhotoCard photo={p} category={data.category} index={i} />
 	{/each}
 </Masonry>

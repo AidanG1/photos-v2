@@ -23,7 +23,7 @@
 </script>
 
 <Drawer><Navigation categories={data.categories} /></Drawer>
-<AppShell slotSidebarLeft="bg-surface-50-900-token w-0 lg:w-56 p-4" slotPageContent="bg-surface-300">
+<AppShell slotSidebarLeft="bg-surface-50-900-token w-0 lg:w-56 lg:p-4" slotPageContent="bg-surface-300">
 	<svelte:fragment slot="header">
 		<AppBar>
 			<svelte:fragment slot="trail">

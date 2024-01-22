@@ -1,31 +1,56 @@
-<script>
+<script lang="ts">
 	import '../app.pcss'
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton'
-	import { LightSwitch } from '@skeletonlabs/skeleton'
-	import { categoryMenuBar } from '$lib/utils'
+	import {
+		AppShell,
+		AppBar,
+		initializeStores,
+		Drawer,
+		getDrawerStore,
+		LightSwitch,
+	} from '@skeletonlabs/skeleton'
+	import { fly } from 'svelte/transition'
+	import Navigation from '$lib/components/Navigation.svelte'
 
 	export let data
+
+	initializeStores()
+
+	const drawerStore = getDrawerStore()
+
+	function drawerOpen(): void {
+		drawerStore.open({})
+	}
 </script>
 
-<AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4">
+<Drawer><Navigation categories={data.categories} /></Drawer>
+<AppShell slotSidebarLeft="bg-surface-50-900-token w-0 lg:w-56 p-4" slotPageContent="bg-surface-300">
 	<svelte:fragment slot="header">
 		<AppBar>
-			<svelte:fragment slot="lead">
-				Aidan's Photos
-			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<LightSwitch />
+			</svelte:fragment>
+			<svelte:fragment slot="lead">
+				<div class="flex items-center">
+					<button class="btn btn-sm mr-4 lg:hidden" on:click={drawerOpen}>
+						<span>
+							<svg viewBox="0 0 100 80" class="fill-token h-4 w-4">
+								<rect width="100" height="20" />
+								<rect y="30" width="100" height="20" />
+								<rect y="60" width="100" height="20" />
+							</svg>
+						</span>
+					</button>
+					<strong class="text-xl uppercase">Aidan's Photos</strong>
+				</div>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
-		<nav class="list-nav">
-			<ul>
-				{#each data.categories as c}
-					<li><a href="/{c}/">{categoryMenuBar(c)}</a></li>
-				{/each}
-			</ul>
-		</nav>
+		<Navigation categories={data.categories} />
 	</svelte:fragment>
-	<slot />
+	{#key data.pathname}
+		<div in:fly={{ duration: 300, delay: 400 }} out:fly={{ duration: 300 }}>
+			<slot />
+		</div>
+	{/key}
 </AppShell>

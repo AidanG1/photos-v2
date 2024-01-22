@@ -1,7 +1,10 @@
 import { categories } from '$lib/categories.js';
 
-export function load() {
+export function load({url}) {
+    const { pathname } = url;
+
     return {
-        categories
+        categories,
+        pathname
     };
 }

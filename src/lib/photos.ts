@@ -198,7 +198,7 @@ const photos: Photo[] = [ // lower ranks display earlier
     { rank: 4, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1659988913/Aidan%27s%20Photos/Belize/IMG_7442_kos9w0.jpg", categories: ['belize', 'people', 'sports'] },
     { rank: 5, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1659988913/Aidan%27s%20Photos/Belize/IMG_7416_udhill.jpg", categories: ['belize', 'sports', 'people'] },
     { rank: 7, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1659988913/Aidan%27s%20Photos/Belize/IMG_7397_vdxmou.jpg", categories: ['belize', 'people', 'motion-blur'] },
-    { rank: 2, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1659988913/Aidan%27s%20Photos/Belize/IMG_7169_kfyge8.jpg", categories: ['belize', 'people', 'sports'] },
+    { rank: 7, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1659988913/Aidan%27s%20Photos/Belize/IMG_7169_kfyge8.jpg", categories: ['belize', 'people', 'sports'] },
     { rank: 6, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1659988913/Aidan%27s%20Photos/Belize/IMG_7280_tvjmgr.jpg", categories: ['belize', 'people', 'animals'] },
     { rank: 5, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1659988913/Aidan%27s%20Photos/Belize/IMG_7131_dtc2kl.jpg", categories: ['belize', 'people', 'motion-blur'] },
     { rank: 3, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1659988913/Aidan%27s%20Photos/Belize/IMG_7082_schilv.jpg", categories: ['belize', 'animals'] },

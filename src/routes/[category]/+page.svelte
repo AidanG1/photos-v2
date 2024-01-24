@@ -5,10 +5,10 @@
 	export let data
 </script>
 
-<!-- <TailwindMasonry photos={data.photos} /> -->
+<TailwindMasonry photos={data.photos} />
 
-<Masonry reset>
+<!-- <Masonry reset>
 	{#each data.photos as p, i}
 		<PhotoCard photo={p} category={data.category} index={i} />
 	{/each}
-</Masonry>
+</Masonry> -->

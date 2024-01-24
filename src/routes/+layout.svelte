@@ -20,6 +20,11 @@
 	function drawerOpen(): void {
 		drawerStore.open({})
 	}
+
+	// on navigation, close the drawer
+	$: {
+		drawerStore.close()
+	}
 </script>
 
 <Drawer><Navigation categories={data.categories} /></Drawer>
@@ -40,7 +45,7 @@
 							</svg>
 						</span>
 					</button>
-					<strong class="text-xl uppercase">Aidan's Photos</strong>
+					<a href="/"><strong class="text-xl uppercase">Aidan's Photos</strong></a>
 				</div>
 			</svelte:fragment>
 		</AppBar>

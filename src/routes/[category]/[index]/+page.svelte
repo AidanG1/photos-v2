@@ -1,7 +1,6 @@
 <script lang="ts">
 	import PhotoPicture from '$lib/components/PhotoPicture.svelte'
-	import type { PhotoWidth } from '$lib/photos.js'
-	import { fly } from 'svelte/transition'
+	import type { PhotoStats } from '$lib/types.js'
 
 	export let data
 	function pageIndex(change: number): number {
@@ -9,15 +8,35 @@
 		return index < 0 ? data.photos.length - 1 : index % data.photos.length
 	}
 
-	let width: PhotoWidth = 'w1440'
+	let dialog: HTMLDialogElement
+
+	let naturalHeight: number
+	let naturalWidth: number
+	let clientHeight: number
+	let clientWidth: number
 </script>
 
-<!-- <a
-	href="/{data.category}/"
-	type="button"
-	class="variant-outline btn-icon absolute right-0 -translate-x-1 translate-y-1">X</a
-> -->
-<div class="p-2 flex flex-col">
+<dialog bind:this={dialog} class="backdrop:bg-surface-50-900-token">
+	<div class="flex flex-col justify-center p-2 h-screen">
+		<div class="h-1/2">
+			{#if naturalHeight === 0} <p>Loading...</p> {/if}
+			<PhotoPicture
+				photo={data.photos[data.index]}
+				width="w6000"
+				height_class="h-1/2"
+				bind:naturalHeight
+				bind:naturalWidth
+				bind:clientHeight
+				bind:clientWidth
+			/>
+		</div>
+		<h2>
+			Full Resolution Image {naturalWidth}x{naturalHeight} displaying at {clientWidth}x{clientHeight}
+		</h2>
+		<button class="variant-filled btn mt-2 w-full" on:click={() => dialog.close()}> Close </button>
+	</div>
+</dialog>
+<div class="flex flex-col p-2">
 	<div class="flex items-center justify-center gap-4 p-4">
 		<!-- Button: Left -->
 		<a href="/{data.category}/{pageIndex(-1)}/" class="grow">
@@ -54,11 +73,19 @@
 		</a>
 	</div>
 	<div class="flex max-h-screen justify-center">
-		<PhotoPicture photo={data.photos[data.index]} {width} />
+		<PhotoPicture photo={data.photos[data.index]} width="w1440" />
 	</div>
-	<div class="flex flex-col justify-center mt-2">
-		<button type="button" class="variant-filled btn w-full" on:click={() => {width='w6000'}}> Load full resolution </button>
-		<a href="/{data.category}/">
+	<div class="my-2 flex flex-col justify-center">
+		<button
+			type="button"
+			class="variant-filled btn w-full"
+			on:click={() => {
+				dialog.showModal()
+			}}
+		>
+			Load full resolution
+		</button>
+		<a href="/{data.category}/" class="mt-2">
 			<button type="button" class="variant-filled btn w-full"> Close </button>
 		</a>
 	</div>

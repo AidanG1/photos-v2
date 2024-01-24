@@ -1,36 +1,12 @@
-type Photo = {
-    rank: number,
-    src: string,
-    categories: string[],
-}
-
-export type PhotoWidth = 'w720' | 'w1440' | 'w6000'
-
-export type PhotoPlus = Photo & {
-    avif: {
-        w720: string
-        w1440: string
-        w6000: string
-    },
-    webp: {
-        w720: string
-        w1440: string
-        w6000: string
-    },
-    jp2: {
-        w720: string
-        w1440: string
-        w6000: string
-    }
-}
+import type { Photo, PhotoPlus } from '$lib/types'
 
 const photos: Photo[] = [ // lower ranks display earlier
-    { rank: 6, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228929/Aidan%27s%20Photos/IMG_0333_udqsqc.jpg', categories: ['nature', 'beach'] },
+    { rank: 6, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228929/Aidan%27s%20Photos/IMG_0333_udqsqc.jpg', categories: ['nature'] },
     { rank: 3, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228929/Aidan%27s%20Photos/IMG_5942.JPG_eblns2.jpg', categories: ['nature', 'close-up'] },
     { rank: 8, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228929/Aidan%27s%20Photos/IMG_5040_qtgx1h.jpg', categories: ['close-up',] },
-    { rank: 7, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228930/Aidan%27s%20Photos/IMG_0358_wy7lnn.jpg', categories: ['nature', 'beach'] },
+    { rank: 7, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228930/Aidan%27s%20Photos/IMG_0358_wy7lnn.jpg', categories: ['nature'] },
     { rank: 5, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228930/Aidan%27s%20Photos/IMG_6320_hzsp7t.jpg', categories: ['close-up', 'animals'] },
-    { rank: 8, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228930/Aidan%27s%20Photos/IMG_0286_ypijae.jpg', categories: ['beach', 'nature'] },
+    { rank: 8, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228930/Aidan%27s%20Photos/IMG_0286_ypijae.jpg', categories: [ 'nature'] },
     { rank: 4, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228931/Aidan%27s%20Photos/IMG_4566-1_szrebb.jpg', categories: ['urban',] },
     { rank: 2, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228931/Aidan%27s%20Photos/IMG_4685_n0otug.jpg', categories: ['people', 'sports', 'favorites'] },
     { rank: 4, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641228931/Aidan%27s%20Photos/IMG_6483_cbzba1.jpg', categories: ['nature', 'animals'] },
@@ -79,12 +55,12 @@ const photos: Photo[] = [ // lower ranks display earlier
     { rank: 5, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229539/Aidan%27s%20Photos/IMG_4257_aevztf.jpg', categories: ['people',] },
     { rank: 6, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229539/Aidan%27s%20Photos/IMG_3862_wiqsti.jpg', categories: ['people',] },
     { rank: 4, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229540/Aidan%27s%20Photos/IMG_4151_zduhgm.jpg', categories: ['sports',] },
-    { rank: 3, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229661/Aidan%27s%20Photos/IMG_1176_bjiptq.jpg', categories: ['beach', 'motion-blur'] },
+    { rank: 3, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229661/Aidan%27s%20Photos/IMG_1176_bjiptq.jpg', categories: ['motion-blur'] },
     { rank: 5, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229660/Aidan%27s%20Photos/IMG_0976_t1fryz.jpg', categories: ['motion-blur', 'urban'] },
     { rank: 5, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229660/Aidan%27s%20Photos/IMG_0588_mipsvw.jpg', categories: ['motion-blur', 'people'] },
     { rank: 4, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229660/Aidan%27s%20Photos/IMG_0921_nasich.jpg', categories: ['motion-blur', 'urban'] },
     { rank: 6, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229660/Aidan%27s%20Photos/IMG_0926_kv1lno.jpg', categories: ['motion-blur',] },
-    { rank: 7, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229660/Aidan%27s%20Photos/IMG_1132_wwxe4k.jpg', categories: ['beach', 'motion-blur'] },
+    { rank: 7, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229660/Aidan%27s%20Photos/IMG_1132_wwxe4k.jpg', categories: ['motion-blur'] },
     { rank: 5, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229661/Aidan%27s%20Photos/IMG_1350_ufsy4f.jpg', categories: ['motion-blur',] },
     { rank: 3, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229679/Aidan%27s%20Photos/IMG_5566_uqnwrc.jpg', categories: ['motion-blur',] },
     { rank: 5, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641229680/Aidan%27s%20Photos/IMG_5607_dxemgq.jpg', categories: ['motion-blur',] },
@@ -99,7 +75,7 @@ const photos: Photo[] = [ // lower ranks display earlier
     { rank: 5, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641426170/Aidan%27s%20Photos/IMG_1218_gbtkfd.jpg', categories: ['animals',] },
     { rank: 2, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641426170/Aidan%27s%20Photos/IMG_0288_2_qz50un.jpg', categories: ['animals', 'nature'] },
     { rank: 8, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641426170/Aidan%27s%20Photos/IMG_1281_qblaap.jpg', categories: ['animals',] },
-    { rank: 4, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641426170/Aidan%27s%20Photos/IMG_0233_keuao8.jpg', categories: ['people', 'beach'] },
+    { rank: 4, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641426170/Aidan%27s%20Photos/IMG_0233_keuao8.jpg', categories: ['people'] },
     { rank: 7, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641426170/Aidan%27s%20Photos/IMG_1316_f6qxvr.jpg', categories: ['animals',] },
     { rank: 5, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641426170/Aidan%27s%20Photos/IMG_0493_sm2d7j.jpg', categories: ['people',] },
     { rank: 6, src: 'https://res.cloudinary.com/dnmd9zoai/image/upload/v1641426170/Aidan%27s%20Photos/IMG_0742_oxtmgz.jpg', categories: ['animals', 'nature'] },

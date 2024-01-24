@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PhotoPlus } from '$lib/photos'
+	import type { PhotoPlus } from '$lib/types'
 	import PhotoPicture from './PhotoPicture.svelte'
 
 	export let photo: PhotoPlus

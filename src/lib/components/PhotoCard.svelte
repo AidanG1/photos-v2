@@ -8,7 +8,7 @@
 </script>
 
 <a href="/{category}/{index}/">
-	<div class="border-2 border-black transition-transform hover:z-10 hover:scale-110">
+	<div class="transition-transform hover:z-10 hover:scale-105">
         <PhotoPicture photo={photo} />
 	</div>
 </a>

@@ -4,7 +4,7 @@ export type Photo = {
     categories: string[],
 }
 
-export type PhotoWidth = 'w720' | 'w1440' | 'w6000'
+export type PhotoWidth = 'w720' | 'w1440' | 'w_1'
 
 export type PhotoStats = {
     width: number
@@ -16,16 +16,16 @@ export type PhotoPlus = Photo & {
     avif: {
         w720: string
         w1440: string
-        w6000: string
+        w_1: string
     },
     webp: {
         w720: string
         w1440: string
-        w6000: string
+        w_1: string
     },
     jp2: {
         w720: string
         w1440: string
-        w6000: string
+        w_1: string
     }
 }

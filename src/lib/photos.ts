@@ -436,26 +436,26 @@ function photoToPhotoPlus(photo: Photo): PhotoPlus {
         src: '',
         categories: [],
         rank: 0,
-        avif: {w1440: '', w720: '', w6000: ''},
-        webp: {w1440: '', w720: '', w6000: ''},
-        jp2: {w1440: '', w720: '', w6000: ''}
+        avif: {w1440: '', w720: '', w_1: ''},
+        webp: {w1440: '', w720: '', w_1: ''},
+        jp2: {w1440: '', w720: '', w_1: ''}
     };
     newPhoto.src = photo.src;
     newPhoto.categories = photo.categories;
     newPhoto.rank = photo.rank;
 
-    let width = 720;
+    let width = '720';
     newPhoto.avif.w720 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'avif';
     newPhoto.webp.w720 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'webp';
     newPhoto.jp2.w720 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'jp2';
-    width = 1440;
+    width = '1440';
     newPhoto.avif.w1440 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'avif';
     newPhoto.webp.w1440 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'webp';
     newPhoto.jp2.w1440 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'jp2';
-    width = 6000;
-    newPhoto.avif.w6000 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'avif';
-    newPhoto.webp.w6000 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'webp';
-    newPhoto.jp2.w6000 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'jp2';
+    width = '1.0';
+    newPhoto.avif.w_1 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'avif';
+    newPhoto.webp.w_1 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'webp';
+    newPhoto.jp2.w_1 = photo.src.substring(0, 50) + `c_scale,w_${width}/` + photo.src.substring(50, photo.src.length-3) + 'jp2';
 
     return newPhoto
 }

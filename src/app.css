@@ -1,13 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind variants;
 
-html,
-body {
-	@apply h-full overflow-hidden;
-}
-main, dialog {
+main {
 	background-color: rgba(var(--color-surface-500) / 1);
 	background-image: radial-gradient(at 65% 78%, hsla(100, 70%, 76%, 1) 0px, transparent 50%),
 		radial-gradient(at 70% 16%, hsla(279, 76%, 74%, 1) 0px, transparent 50%),
@@ -15,5 +10,5 @@ main, dialog {
 		radial-gradient(at 55% 86%, hsla(66, 88%, 75%, 1) 0px, transparent 50%),
 		radial-gradient(at 57% 99%, hsla(46, 76%, 64%, 1) 0px, transparent 50%),
 		radial-gradient(at 40% 60%, hsla(232, 74%, 62%, 1) 0px, transparent 50%),
-		radial-gradient(at 33% 15%, hsla(247, 61%, 65%, 1) 0px, transparent 50%);
+		radial-gradient(at 33% 15%, oklch(var(--p)) 0px, transparent 50%);
 }

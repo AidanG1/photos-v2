@@ -37,54 +37,54 @@
 	</div>
 </dialog>
 <div class="flex flex-col p-2">
-	<div class="flex items-center justify-center gap-4 p-4">
-		<!-- Button: Left -->
-		<a href="/{data.category}/{pageIndex(-1)}/" class="grow">
-			<button type="button" class="variant-filled bg-surface-50-900-token btn-icon">
-				<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M15 7L10 12L15 17"
-						stroke="#000000"
-						stroke-width="1.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			</button>
-		</a>
-		<!-- Button: Right -->
-		<a href="/{data.category}/{pageIndex(1)}/">
-			<button type="button" class="variant-filled bg-surface-50-900-token btn-icon">
-				<svg
-					viewBox="0 0 24 24"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					class="text-surface-50"
-				>
-					<path
-						d="M10 7L15 12L10 17"
-						stroke="#000000"
-						stroke-width="1.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			</button>
-		</a>
-	</div>
 	<div class="flex max-h-screen justify-center">
 		<PhotoPicture photo={data.photos[data.index]} width="w1440" />
 	</div>
 	<div class="my-2 flex flex-col justify-center">
-		<button
-			type="button"
-			class="variant-filled btn w-full"
-			on:click={() => {
-				dialog.showModal()
-			}}
-		>
-			Load full resolution
-		</button>
+		<div class="flex items-center justify-center gap-4 p-4">
+			<!-- Button: Left -->
+			<a href="/{data.category}/{pageIndex(-1)}/" class="grow">
+				<button type="button" class="variant-filled btn-icon">
+					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M15 7L10 12L15 17"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</button>
+			</a>
+			<button
+				type="button"
+				class="variant-filled btn w-full"
+				on:click={() => {
+					dialog.showModal()
+				}}
+			>
+				Load full resolution
+			</button>
+			<!-- Button: Right -->
+			<a href="/{data.category}/{pageIndex(1)}/">
+				<button type="button" class="variant-filled bg-surface-50-900-token btn-icon">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						class="text-surface-50"
+					>
+						<path
+							d="M10 7L15 12L10 17"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</button>
+			</a>
+		</div>
 		<a href="/{data.category}/" class="mt-2">
 			<button type="button" class="variant-filled btn w-full"> Close </button>
 		</a>

@@ -1,111 +1,77 @@
 <script lang="ts">
-	var minColWidth = 128
-	var roots
 	import type { PhotoPlus } from '$lib/types'
+	import { onMount } from 'svelte'
 	import PhotoPicture from './PhotoPicture.svelte'
 
 	export let photos: PhotoPlus[]
 
-	function onLoad() {
-		var rootElements = document.getElementsByClassName('masonry-root')
-		roots = Array.prototype.map.call(rootElements, function (rootElement) {
-			var cellElements = rootElement.getElementsByClassName('masonry-cell')
-			var cells = Array.prototype.map.call(cellElements, function (cellElement) {
-				var style = getComputedStyle(cellElement)
-				return {
-					element: cellElement,
-					outerHeight:
-						parseInt(style.marginTop) + cellElement.offsetHeight + parseInt(style.marginBottom)
-				}
-			})
-			return {
-				element: rootElement,
-				noOfColumns: 0,
-				cells: cells
-			}
-		})
+	onMount(() => {
+		let grids = [...document.querySelectorAll('.grid--masonry')]
 
-		// do the first layout
-		onResize()
-	}
+		if (grids.length && getComputedStyle(grids[0]).gridTemplateRows !== 'masonry') {
+			grids = grids.map((grid: Element) => ({
+				_el: grid,
+				gap: parseFloat(getComputedStyle(grid).gap),
+				items: [...grid.childNodes].filter((c) => c.nodeType === 1),
+				ncol: 0
+			}))
 
-	function onResize() {
-		for (let root of roots) {
-			// only layout when the number of columns has changed
-			var newNoOfColumns = Math.floor(root.element.offsetWidth / minColWidth)
-			if (newNoOfColumns != root.noOfColumns) {
-				// initialize
-				root.noOfColumns = newNoOfColumns
-				var columns = Array.from(new Array(root.noOfColumns)).map(function (column) {
-					return {
-						cells: new Array(),
-						outerHeight: 0
+			function layout() {
+				grids.forEach((grid) => {
+					/* get the post relayout number of columns */
+					let ncol = getComputedStyle(grid._el).gridTemplateColumns.split(' ').length
+
+					/* if the number of columns has changed */
+					if (grid.ncol !== ncol) {
+						/* update number of columns */
+						grid.ncol = ncol
+
+						/* revert to initial positioning, no margin */
+						grid.items.forEach((c) => c.style.removeProperty('margin-top'))
+
+						/* if we have more than one column */
+						if (grid.ncol > 1) {
+							grid.items.slice(ncol).forEach((c, i) => {
+								let prev_fin =
+										grid.items[i].getBoundingClientRect().bottom /* bottom edge of item above */,
+									curr_ini = c.getBoundingClientRect().top /* top edge of current item */
+
+								c.style.marginTop = `${prev_fin + grid.gap - curr_ini}px`
+							})
+						}
 					}
 				})
+			}
 
-				// divide...
-				for (let cell of root.cells) {
-					var minOuterHeight = Math.min(
-						...columns.map(function (column) {
-							return column.outerHeight
-						})
-					)
-					var column = columns.find(function (column) {
-						return column.outerHeight == minOuterHeight
-					})
-					column.cells.push(cell)
-					column.outerHeight += cell.outerHeight
-				}
+			window.addEventListener(
+				'load',
+				(e) => {
+					layout() /* initial load */
+					window.addEventListener('resize', layout, false) /* on resize */
+				},
+				false
+			)
 
-				// calculate masonry height
-				var masonryHeight = Math.max(
-					...columns.map(function (column) {
-						return column.outerHeight
-					})
-				)
-
-				// ...and conquer
-				var order = 0
-				for (let column of columns) {
-					for (let cell of column.cells) {
-						cell.element.style.order = order++
-						// set the cell's flex-basis to 0
-						cell.element.style.flexBasis = 0
-					}
-					// set flex-basis of the last cell to fill the
-					// leftover space at the bottom of the column
-					// to prevent the first cell of the next column
-					// to be rendered at the bottom of this column
-					column.cells[column.cells.length - 1].element.style.flexBasis =
-						column.cells[column.cells.length - 1].element.offsetHeight +
-						masonryHeight -
-						column.outerHeight -
-						1 +
-						'px'
-				}
-
-				// set the masonry height to trigger
-				// re-rendering of all cells over columns
-				// one pixel more than the tallest column
-				root.element.style.maxHeight = masonryHeight + 1 + 'px'
-
-				console.log(
-					columns.map(function (column) {
-						return column.outerHeight
-					})
-				)
-				console.log(root.element.style.maxHeight)
+			return () => {
+				window.removeEventListener('resize', layout, false)
 			}
 		}
-	}
-
-	// subscribe to load and resize events
-	window.addEventListener('load', onLoad)
-	window.addEventListener('resize', onResize)
+	})
 </script>
 
-{#each photos as p}
-	<div>
-		<PhotoPicture photo={p} />
-	</div>
-{/each}
+<section class="grid--masonry p-2">
+	{#each photos as photo}
+		<div class="block self-start">
+			<PhotoPicture {photo} />
+		</div>
+	{/each}
+</section>
+
+<style>
+	.grid--masonry {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-template-rows: masonry;
+		gap: 1rem;
+	}
+</style>

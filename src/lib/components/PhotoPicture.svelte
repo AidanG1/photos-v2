@@ -8,6 +8,7 @@
 	export let clientWidth: number = 0
 	export let clientHeight: number = 0
 	export let height_class: string = 'h-auto'
+	export let height_style: string = ''
 </script>
 
 <picture bind:clientWidth bind:clientHeight>
@@ -19,5 +20,6 @@
 		class={height_class}
 		bind:naturalHeight
 		bind:naturalWidth
+		style={height_style}
 	/>
 </picture>

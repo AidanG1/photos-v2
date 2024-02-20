@@ -2,14 +2,15 @@
 	import '../app.css'
 	import { fly } from 'svelte/transition'
 	import Navigation from '$lib/components/Navigation.svelte'
+	import Theme from '$lib/components/Theme.svelte'
 
 	export let data
 </script>
 
-<div class="navbar bg-base-100">
+<div class="navbar lg:hidden">
 	<div class="navbar-start">
 		<div class="dropdown">
-			<div tabindex="0" role="button" class="btn-ghost btn-circle btn">
+			<div tabindex="0" role="button" class="btn btn-circle btn-ghost">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-5 w-5"
@@ -24,55 +25,48 @@
 					/></svg
 				>
 			</div>
-			<ul class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+			<ul class="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
 				<Navigation categories={data.categories} />
 			</ul>
 		</div>
 	</div>
 	<div class="navbar-center">
-		<a class="btn-ghost btn text-xl" href="/favorites/">Aidan's Photos</a>
+		<a class="btn btn-ghost text-xl" href="/favorites/">Aidan's Photos</a>
 	</div>
 	<div class="navbar-end">
-		<button class="btn-ghost btn-circle btn">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-5 w-5"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-				><path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-				/></svg
-			>
-		</button>
-		<button class="btn-ghost btn-circle btn">
-			<div class="indicator">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-5 w-5"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-					/></svg
-				>
-				<span class="badge-xs badge-primary indicator-item badge"></span>
-			</div>
-		</button>
+		<Theme />
 	</div>
 </div>
+<aside class="drawer lg:drawer-open">
+	<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+	<div class="drawer-content flex flex-col items-center justify-center">
+		<main class="w-full">
+			{#key data.pathname}
+				<div in:fly={{ duration: 300, delay: 400 }} out:fly={{ duration: 300 }}>
+					<slot />
+				</div>
+			{/key}
+		</main>
+		<!-- <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> -->
+	</div>
+	<div class="drawer-side">
+		<label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
+		<ul class="menu min-h-full w-60 bg-base-200 p-4 text-base-content">
+			<a class="btn btn-ghost text-xl" href="/favorites/">Aidan's Photos</a>
+			<Theme />
+			<Navigation categories={data.categories} />
+		</ul>
+	</div>
+</aside>
 
-<main>
-	{#key data.pathname}
-		<div in:fly={{ duration: 300, delay: 400 }} out:fly={{ duration: 300 }}>
-			<slot />
-		</div>
-	{/key}
-</main>
+<style>
+	.navbar {
+		background-color: rgba(var(--color-surface-500) / 1);
+		background-image: radial-gradient(at 1% 78%, oklch(var(--b1)) 0px, transparent 50%),
+			radial-gradient(at 70% 16%, oklch(var(--b2)) 0px, transparent 50%),
+			radial-gradient(at 27% 88%, oklch(var(--b3)) 0px, transparent 50%),
+			radial-gradient(at 15% 86%, oklch(var(--b2)) 0px, transparent 50%),
+			radial-gradient(at 57% 99%, oklch(var(--b1)) 0px, transparent 50%);
+		color: oklch(var(--p));
+	}
+</style>

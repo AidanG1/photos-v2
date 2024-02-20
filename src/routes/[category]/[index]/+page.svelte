@@ -1,5 +1,6 @@
 <script lang="ts">
 	import PhotoPicture from '$lib/components/PhotoPicture.svelte'
+	import { photos } from '$lib/photos'
 	import type { PhotoStats } from '$lib/types.js'
 
 	export let data
@@ -7,42 +8,13 @@
 		const index = data.index + change
 		return index < 0 ? data.photos.length - 1 : index % data.photos.length
 	}
-
-	let dialog: HTMLDialogElement
-
-	let naturalHeight: number
-	let naturalWidth: number
-	let clientHeight: number
-	let clientWidth: number
 </script>
 
-<dialog bind:this={dialog}>
-	<div class="flex h-screen flex-col justify-center p-2">
-		<div class="h-1/2">
-			{#if naturalHeight === 0}
-				<p>Loading...</p>
-			{/if}
-			<PhotoPicture
-				photo={data.photos[data.index]}
-				width="w_1"
-				height_class="h-1/2"
-				bind:naturalHeight
-				bind:naturalWidth
-				bind:clientHeight
-				bind:clientWidth
-			/>
-		</div>
-		<h2>
-			Full Resolution Image {naturalWidth}x{naturalHeight} displaying at {clientWidth}x{clientHeight}
-		</h2>
-		<button class="variant-filled btn mt-2 w-full" on:click={() => dialog.close()}> Close </button>
-	</div>
-</dialog>
-<div class="min-h-screen">
+<div class="flex flex-col justify-center p-2">
 	<div class="flex justify-center p-2">
-		<PhotoPicture photo={data.photos[data.index]} width="w1440" height_class="max-h-96" />
+		<PhotoPicture photo={data.photos[data.index]} width="w1440" height_style="height: 75vh" height_class="shadow-2xl" />
 	</div>
-	<div class="flex items-center justify-center gap-4 p-4">
+	<div class="flex items-center justify-center gap-4">
 		<!-- Button: Left -->
 		<a href="/{data.category}/{pageIndex(-1)}/">
 			<button type="button" class="btn btn-circle">
@@ -57,15 +29,14 @@
 				</svg>
 			</button>
 		</a>
-		<button
+		<a
 			type="button"
 			class="variant-filled btn grow"
-			on:click={() => {
-				dialog.showModal()
-			}}
+			href={data.photos[data.index].webp.w_1}
+			target="_blank"
 		>
-			Load full resolution
-		</button>
+			View full resolution
+		</a>
 		<!-- Button: Right -->
 		<a href="/{data.category}/{pageIndex(1)}/">
 			<button type="button" class="btn btn-circle">
@@ -86,7 +57,5 @@
 			</button>
 		</a>
 	</div>
-	<a href="/{data.category}/" class="my-2">
-		<button type="button" class="variant-filled btn w-full"> Close </button>
-	</a>
+	<a type="button" href="/{data.category}/" class="variant-filled btn my-2 w-full"> Close </a>
 </div>

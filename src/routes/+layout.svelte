@@ -40,7 +40,7 @@
 <aside class="drawer lg:drawer-open">
 	<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex flex-col items-center justify-center">
-		<main class="w-full">
+		<main class="w-full lg:min-h-screen">
 			{#key data.pathname}
 				<div in:fly={{ duration: 300, delay: 400 }} out:fly={{ duration: 300 }}>
 					<slot />

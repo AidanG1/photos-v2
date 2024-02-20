@@ -8,7 +8,7 @@
 </script>
 
 <div class="flex justify-center p-2">
-<h1 class="text-3xl">{categoryMenuBar(data.category)}</h1>
+	<h1 class="text-3xl text-primary-content">{categoryMenuBar(data.category)}</h1>
 </div>
 <!-- <FancyMasonry photos={data.photos} /> -->
 <TailwindMasonry photos={data.photos} category={data.category} />

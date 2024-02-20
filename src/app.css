@@ -4,11 +4,11 @@
 
 main {
 	background-color: rgba(var(--color-surface-500) / 1);
-	background-image: radial-gradient(at 65% 78%, oklch(var(--su)) 0px, transparent 50%),
-		radial-gradient(at 70% 16%, oklch(var(--in)) 0px, transparent 50%),
-		radial-gradient(at 67% 88%, oklch(var(--wa)) 0px, transparent 50%),
-		radial-gradient(at 55% 86%, oklch(var(--er)) 0px, transparent 50%),
+	background-image: radial-gradient(at 65% 78%, color-mix(in oklch, oklch(var(--p)), dimgray) 0px, transparent 50%),
+		radial-gradient(at 70% 16%, color-mix(in oklch, oklch(var(--p)), white) 0px, transparent 50%),
+		radial-gradient(at 67% 88%, color-mix(in oklch, oklch(var(--p)), black) 0px, transparent 50%),
+		radial-gradient(at 15% 86%, color-mix(in oklch, oklch(var(--p)), white) 0px, transparent 50%),
 		radial-gradient(at 57% 99%, oklch(var(--s)) 0px, transparent 50%),
-		radial-gradient(at 40% 60%, oklch(var(--a)) 0px, transparent 50%),
+		radial-gradient(at 8% 60%, color-mix(in oklch, oklch(var(--p)), dimgray) 0px, transparent 50%),
 		radial-gradient(at 33% 15%, oklch(var(--p)) 0px, transparent 50%);
 }

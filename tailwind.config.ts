@@ -28,14 +28,11 @@ module.exports = {
 		  "autumn",
 		  "business",
 		  "acid",
-		  "lemonade",
 		  "night",
 		  "coffee",
 		  "winter",
-		  "dim",
 		  "nord",
 		  "sunset",
-
 		  {
 			butter: {
 			  "color-scheme": "light",

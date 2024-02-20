@@ -36,7 +36,7 @@
 	// })
 </script>
 
-<section class="columns-1 p-2 space-x-2 space-y-2 sm:columns-2 md:columns-3 xl:columns-4 w-full" bind:this={masonry}>
+<section class="columns-1 p-1 space-x-1 space-y-1 sm:columns-2 md:columns-3 2xl:columns-4 w-full" bind:this={masonry}>
 	{#each ordered_photos as p, i}
 			<PhotoCard photo={p} category={category} index={i} />
 	{/each}

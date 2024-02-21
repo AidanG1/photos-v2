@@ -3,6 +3,7 @@
 	import { photos } from '$lib/photos'
 	import type { PhotoStats } from '$lib/types.js'
 	import ColorThief from 'colorthief'
+	import { page } from '$app/stores'
 
 	export let data
 	function pageIndex(change: number): number {
@@ -15,12 +16,24 @@
 	let buttons: HTMLAnchorElement[] | null[] = [null, null, null, null]
 </script>
 
+<svelte:head>
+	<title>Aidan's Photos: {data.category} #{data.index}</title> 
+	<meta name="description" content="Aidan's Photos: {data.category} #{data.index}" />
+	<meta property="og:title" content="Aidan's Photos: {data.category} #{data.index}" />
+	<meta property="og:description" content="Aidan's Photos from the {data.category} category" />
+	<meta property="og:image" content="{data.photos[data.index].webp.w720}" />
+	<meta property="og:url" content="{$page.url.href}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Aidan's Photos" />
+	<meta property="og:locale" content="en_US" />
+</svelte:head>
+
 <div class="flex min-h-screen flex-col justify-center p-2" bind:this={photoDiv}>
 	<div class="flex justify-center p-2">
 		<PhotoPicture
 			photo={data.photos[data.index]}
 			width="w1440"
-			height_style="height: 75vh"
+			height_style="max-height: 75vh"
 			height_class="shadow-2xl"
 			on:loaded={(load) => {
 				const colorThief = new ColorThief()

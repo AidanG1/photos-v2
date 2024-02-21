@@ -11,10 +11,10 @@
 	<h1 class="text-4xl font-bold text-primary-content">{categoryMenuBar(data.category)}</h1>
 </div>
 <!-- <FancyMasonry photos={data.photos} /> -->
-<TailwindMasonry photos={data.photos} category={data.category} />
+<!-- <TailwindMasonry photos={data.photos} category={data.category} /> -->
 
-<!-- <Masonry reset>
+<Masonry reset>
 	{#each data.photos as p, i}
 		<PhotoCard photo={p} category={data.category} index={i} />
 	{/each}
-</Masonry> -->
+</Masonry>

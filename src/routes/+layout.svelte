@@ -37,7 +37,7 @@
 		<Theme />
 	</div>
 </div>
-<aside class="drawer lg:drawer-open">
+<div class="drawer lg:drawer-open">
 	<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex flex-col items-center justify-center">
 		<main class="w-full lg:min-h-screen">
@@ -49,19 +49,18 @@
 		</main>
 		<!-- <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> -->
 	</div>
-	<div class="drawer-side">
+	<aside class="drawer-side">
 		<label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
 		<ul class="menu min-h-full w-60 bg-base-200 p-4 text-base-content">
 			<a class="btn btn-ghost text-xl" href="/favorites/">Aidan's Photos</a>
 			<Theme />
 			<Navigation categories={data.categories} />
 		</ul>
-	</div>
-</aside>
+	</aside>
+</div>
 
 <style>
 	.navbar {
-		background-color: rgba(var(--color-surface-500) / 1);
 		background-image: radial-gradient(at 1% 78%, oklch(var(--b1)) 0px, transparent 50%),
 			radial-gradient(at 70% 16%, oklch(var(--b2)) 0px, transparent 50%),
 			radial-gradient(at 27% 88%, oklch(var(--b3)) 0px, transparent 50%),

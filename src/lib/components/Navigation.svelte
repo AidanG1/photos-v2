@@ -4,5 +4,5 @@
 </script>
 
 {#each categories as c}
-	<li><a href="/{c}/">{categoryMenuBar(c)}</a></li>
+	<li class="font-semibold"><a href="/{c}/">{categoryMenuBar(c)}</a></li>
 {/each}

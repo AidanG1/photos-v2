@@ -9,8 +9,8 @@
     })
 </script>
 <div class="dropdown mr-2">
-    <div tabindex="0" role="button" class="btn m-1 w-full">
-        Theme
+    <div tabindex="0" role="button" class="btn m-1 w-full border-2 border-primary">
+        {ls_theme || 'Theme'}
         <svg
             width="12px"
             height="12px"
@@ -21,18 +21,19 @@
         >
     </div>
     <ul
-        class="dropdown-content z-[1] max-h-96 overflow-y-auto rounded-box bg-base-300 p-2 shadow-2xl border-accent border-2"
+        class="dropdown-content z-[1] max-h-96 overflow-y-auto rounded-box bg-base-300 p-2 shadow-2xl border-primary border-2"
     >
         {#each themes as theme}
             <li>
                 <input
                     type="radio"
                     name="theme-dropdown"
-                    class="theme-controller btn btn-ghost btn-sm btn-block justify-start text-accent"
+                    class="theme-controller btn btn-ghost btn-sm btn-block justify-start text-primary"
                     aria-label={theme}
                     value={theme}
                     on:click={() => {
                         localStorage.setItem('theme', theme)
+                        ls_theme = theme
                     }}
                     checked={theme === ls_theme}
                 />

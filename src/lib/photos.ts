@@ -477,7 +477,6 @@ for (const category in photoCategories) {
     photoCategories[category].sort((a, b) => a.rank - b.rank)
 }
 
-console.log(photoCategories)
 export { photoCategories, photos }
 
 

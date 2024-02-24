@@ -412,7 +412,7 @@ const photos: Photo[] = [ // lower ranks display earlier
     { rank: 5, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1705686267/Vietnam/IMG_0686_tllshi.jpg", categories: ['vietnam', 'people'] },
     { rank: 6, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1705686267/Vietnam/IMG_0675_g1bdnl.jpg", categories: ['vietnam', 'people'] },
     { rank: 3, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1705686266/Vietnam/IMG_0627_jxqsbj.jpg", categories: ['vietnam', 'people'] },
-    { rank: 4, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1705686266/Vietnam/IMG_0627_jxqsbj.jpg", categories: ['vietnam', 'animals'] },
+    { rank: 4, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1705686266/Vietnam/Vietnam/IMG_0516_gd9hzd.jpg", categories: ['vietnam', 'animals'] },
     { rank: 2, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1705686265/Vietnam/IMG_0381_iqw6d2.jpg", categories: ['vietnam', 'people'] },
     { rank: 6, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1705686264/Vietnam/IMG_0365_hlgftz.jpg", categories: ['vietnam', 'people'] },
     { rank: 4, src: "https://res.cloudinary.com/dnmd9zoai/image/upload/v1705686264/Vietnam/IMG_0369_ob5yv3.jpg", categories: ['vietnam', 'people'] },

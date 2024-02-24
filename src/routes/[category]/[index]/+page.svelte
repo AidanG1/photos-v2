@@ -99,7 +99,7 @@
 	</div>
 	<a
 		type="button"
-		href="/{data.category}/"
+		href="/{data.category}/#photo-{data.index}"
 		class="variant-filled btn my-2 w-full text-lg"
 		bind:this={buttons[3]}
 	>

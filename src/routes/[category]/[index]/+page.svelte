@@ -5,15 +5,15 @@
 	import ColorThief from 'colorthief'
 	import { page } from '$app/stores'
 
-	export let data
+	let { data } = $props();
 	function pageIndex(change: number): number {
 		const index = data.index + change
 		return index < 0 ? data.photos.length - 1 : index % data.photos.length
 	}
 
-	let photoDiv: HTMLDivElement
+	let photoDiv: HTMLDivElement = $state()
 
-	let buttons: HTMLAnchorElement[] | null[] = [null, null, null, null]
+	let buttons: HTMLAnchorElement[] | null[] = $state([null, null, null, null])
 </script>
 
 <svelte:head>

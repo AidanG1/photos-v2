@@ -5,7 +5,7 @@
 	import PhotoCard from '$lib/components/PhotoCard.svelte'
 	import { categoryMenuBar } from '$lib/utils'
 	import { page } from '$app/stores'
-	export let data
+	let { data } = $props();
 </script>
 
 <svelte:head>

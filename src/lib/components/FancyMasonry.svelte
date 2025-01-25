@@ -3,7 +3,11 @@
 	import { onMount } from 'svelte'
 	import PhotoPicture from './PhotoPicture.svelte'
 
-	export let photos: PhotoPlus[]
+	interface Props {
+		photos: PhotoPlus[];
+	}
+
+	let { photos }: Props = $props();
 
 	onMount(() => {
 		let grids = [...document.querySelectorAll('.grid--masonry')]

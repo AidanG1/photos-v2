@@ -2,7 +2,7 @@
     import { themes } from '$lib/utils'
 	import { onMount } from 'svelte'
 
-    let ls_theme: string | null = null
+    let ls_theme: string | null = $state(null)
 
     onMount(() => {
         ls_theme = localStorage.getItem('theme')
@@ -31,7 +31,7 @@
                     class="theme-controller btn btn-ghost btn-sm btn-block justify-start text-primary"
                     aria-label={theme}
                     value={theme}
-                    on:click={() => {
+                    onclick={() => {
                         localStorage.setItem('theme', theme)
                         ls_theme = theme
                     }}

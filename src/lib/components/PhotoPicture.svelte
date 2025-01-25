@@ -2,16 +2,29 @@
 	import type { PhotoPlus, PhotoStats, PhotoWidth } from '$lib/types'
 	import { createEventDispatcher, onMount } from 'svelte'
 
-	export let photo: PhotoPlus
-	export let width: PhotoWidth = 'w720'
-	export let naturalHeight: number = 0
-	export let naturalWidth: number = 0
-	export let clientWidth: number = 0
-	export let clientHeight: number = 0
-	export let height_class: string = 'h-auto'
-	export let height_style: string = ''
+	interface Props {
+		photo: PhotoPlus;
+		width?: PhotoWidth;
+		naturalHeight?: number;
+		naturalWidth?: number;
+		clientWidth?: number;
+		clientHeight?: number;
+		height_class?: string;
+		height_style?: string;
+	}
 
-	let image: HTMLImageElement
+	let {
+		photo,
+		width = 'w720',
+		naturalHeight = $bindable(0),
+		naturalWidth = $bindable(0),
+		clientWidth = $bindable(0),
+		clientHeight = $bindable(0),
+		height_class = 'h-auto',
+		height_style = ''
+	}: Props = $props();
+
+	let image: HTMLImageElement = $state()
 
 	const dispatch = createEventDispatcher()
 

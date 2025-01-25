@@ -1,10 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin "daisyui" {
+	themes:
+		light --default,
+		dark --prefersdark,
+		synthwave,
+		cyberpunk,
+		forest,
+		aqua,
+		business,
+		acid,
+		nord,
+		caramellatte,
+		abyss;
+}
 
 main {
 	background-color: rgba(var(--color-surface-500) / 1);
-	background-image: radial-gradient(at 65% 78%, color-mix(in oklch, oklch(var(--p)), dimgray) 0px, transparent 50%),
+	background-image: radial-gradient(
+			at 65% 78%,
+			color-mix(in oklch, oklch(var(--p)), dimgray) 0px,
+			transparent 50%
+		),
 		radial-gradient(at 70% 16%, color-mix(in oklch, oklch(var(--p)), white) 0px, transparent 50%),
 		radial-gradient(at 67% 88%, color-mix(in oklch, oklch(var(--p)), black) 0px, transparent 50%),
 		radial-gradient(at 15% 86%, color-mix(in oklch, oklch(var(--p)), white) 0px, transparent 50%),

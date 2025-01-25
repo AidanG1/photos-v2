@@ -4,7 +4,7 @@
 	import Navigation from '$lib/components/Navigation.svelte'
 	import Theme from '$lib/components/Theme.svelte'
 
-	export let data
+	let { data, children } = $props()
 </script>
 
 <div class="navbar lg:hidden">
@@ -22,10 +22,10 @@
 						stroke-linejoin="round"
 						stroke-width="2"
 						d="M4 6h16M4 12h16M4 18h7"
-					/></svg
-				>
+					/>
+				</svg>
 			</div>
-			<ul class="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
+			<ul class="menu dropdown-content menu-sm rounded-box bg-base-100 z-[1] mt-3 w-52 p-2 shadow">
 				<Navigation categories={data.categories} />
 			</ul>
 		</div>
@@ -43,7 +43,7 @@
 		<main class="w-full lg:min-h-screen">
 			{#key data.pathname}
 				<div in:fly={{ duration: 300, delay: 400 }} out:fly={{ duration: 300 }}>
-					<slot />
+					{@render children?.()}
 				</div>
 			{/key}
 		</main>
@@ -51,7 +51,7 @@
 	</div>
 	<aside class="drawer-side">
 		<label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-		<ul class="menu min-h-full w-60 bg-base-200 p-4 text-base-content">
+		<ul class="menu bg-base-200 text-base-content min-h-full w-60 p-4">
 			<a class="btn btn-ghost text-xl" href="/favorites/">Aidan's Photos</a>
 			<Theme />
 			<Navigation categories={data.categories} />

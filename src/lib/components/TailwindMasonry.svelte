@@ -1,12 +1,16 @@
 <script lang="ts">
 	import type { PhotoPlus } from '$lib/types'
-	import { afterUpdate, beforeUpdate, onMount } from 'svelte'
+	import { onMount } from 'svelte'
 	import PhotoCard from './PhotoCard.svelte'
 
-	export let photos: PhotoPlus[]
-	export let category: string
+	interface Props {
+		photos: PhotoPlus[];
+		category: string;
+	}
 
-	let masonry: HTMLElement
+	let { photos, category }: Props = $props();
+
+	let masonry: HTMLElement = $state()
 
 	let ordered_photos = photos
 

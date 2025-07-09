@@ -20,3 +20,16 @@ export const themes = [
 	'caramellatte',
 	'abyss'
 ]
+
+export const makeAltText = (categories: string[]): string => {
+	if (categories.length === 0) {
+		return 'No categories'
+	}
+	if (categories.length === 1) {
+		return `Category: ${categories[0]}`
+	}
+	if (categories.length === 2) {
+		return `Categories: ${categories[0]} and ${categories[1]}`
+	}
+	return `Categories: ${categories.slice(0, -1).join(', ')}, and ${categories[categories.length - 1]}`
+}

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Masonry from 'svelte-masonry'
-	import { onMount } from 'svelte'
 	import type { PhotoPlus } from '$lib/types'
 	import { makeAltText } from '$lib/utils'
 
@@ -12,7 +11,7 @@
 		category: string
 	} = $props()
 
-	let refreshLayout
+	let refreshLayout: () => void = $state(() => {})
 </script>
 
 <Masonry items={images} bind:refreshLayout gridGap={'0.75rem'}>

@@ -1,38 +1,54 @@
-# create-svelte
+# Aidan's Photos
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A responsive gallery for photographs I have taken while traveling and at home.
 
-## Creating a project
+[View the live site](https://photos.aidang.me/)
 
-If you're seeing this, you've probably already done this step. Congrats!
+![Category gallery](docs/gallery.png)
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The site organizes several hundred photographs by place and subject, including people, wildlife, landscapes, cities, and motion. Each category has its own shareable gallery, and every photograph opens into a focused fu![alt text](image.png)ll-screen view.
 
-# create a new project in my-app
-npm create svelte@latest my-app
+## Features
+
+- Responsive masonry galleries for photographs with different aspect ratios
+- Browsing by location, subject, or a curated favorites collection
+- Dedicated photo URLs with previous and next navigation
+- Background colors and gradients generated from each photograph's palette
+- Light and dark themes
+- Open Graph metadata for category and individual-photo links
+- Installable PWA with cached application assets
+
+![Individual photo view](docs/photo-view.png)
+
+## Image delivery
+
+The original photographs are hosted on Cloudinary. The application derives smaller 720px and 1440px variants in AVIF and WebP, allowing the browser to choose an efficient format while retaining access to the full-resolution original. Images are loaded lazily, and category data is generated from a typed, curated photo index.
+
+## Code highlights
+
+- [`src/lib/photos.ts`](src/lib/photos.ts) — photo metadata, category indexing, ranking, and Cloudinary transformations
+- [`src/lib/components/PhotoPicture.svelte`](src/lib/components/PhotoPicture.svelte) — responsive AVIF/WebP image rendering
+- [`src/lib/components/SvelteMasonry.svelte`](src/lib/components/SvelteMasonry.svelte) — gallery layout
+- [`src/routes/[category]/[index]/+page.svelte`](src/routes/[category]/[index]/+page.svelte) — palette-aware individual photo view
+- [`vite.config.ts`](vite.config.ts) — SvelteKit, Tailwind, and PWA configuration
+
+## Built with
+
+Svelte 5, SvelteKit, TypeScript, Tailwind CSS, DaisyUI, Cloudinary, Color Thief, and Vite PWA.
+
+## Development
+
+```sh
+bun install
+bun run dev
 ```
 
-## Developing
+Before building:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```sh
+bun run lint
+bun run check
+bun run build
 ```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+All photographs displayed by the application are my own.
